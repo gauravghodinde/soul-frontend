@@ -31,7 +31,7 @@ export default function Navbar() {
               variant="outline"
               className="border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white"
             >
-              Sign In
+              Get Started
             </Button>
           </div>
         </div>
