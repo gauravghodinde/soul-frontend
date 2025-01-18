@@ -1,15 +1,33 @@
-"use client"
+import React from "react";
+import Link from "next/link";
 
-
-export default function SideBar() {
+export const Sidebar = ({ children }) => {
   return (
-    <div className="min-h-screen bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-primary/20 via-background to-background relative">
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-purple-500/20 via-transparent to-transparent"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,_var(--tw-gradient-stops))] from-purple-500/20 via-transparent to-transparent"></div>
-      
-      <div>
-        <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#6800ad] to-[#c02af5] bg-clip-text text-transparent mb-8"></h1>
-      </div>
+    <div className="w-[20%] h-full bg-gradient-to-b from-purple-600 to-indigo-700 text-white">
+      {children}
     </div>
   );
-}
+};
+
+export const SidebarBody = ({ className, ...props }) => {
+  return (
+    <div
+      className={`flex flex-col h-full px-4 py-6 ${className}`}
+      {...props}
+    />
+  );
+};
+
+export const SidebarLink = ({ label, href, icon, className, ...props }) => {
+  return (
+    <Link
+      href={href}
+      className={`flex items-center justify-start gap-2 py-2 px-3 rounded-md hover:bg-white/10 transition-colors ${className}`}
+      {...props}
+    >
+      {icon}
+      <span className="text-lg font-medium">{label}</span>
+    </Link>
+  );
+};
+
