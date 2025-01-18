@@ -1,8 +1,11 @@
+"use client"
+
 import { Shield, Sparkles, Users, Compass } from 'lucide-react'
 import { Button } from "./components/ui/button"
 import Navbar from "./components/navbar"
 import Image from 'next/image'
 import bgImage from '../public/bg1.png'
+import AnimatedHero from './components/AnimatedHero'
 
 
 export default function Page() {
@@ -19,7 +22,7 @@ export default function Page() {
             style={{ objectFit: 'cover' }}
             priority
           />
-          <div className="absolute inset-0 bg-[#0D0B1F]/80" />
+          <div className="absolute inset-0" />
         </div>
 
         {/* Content */}
@@ -27,10 +30,10 @@ export default function Page() {
           {/* Left Content */}
           <div className="space-y-8 lg:pr-8 w-[60%]">
             <div className="space-y-4">
-              <h1 className="text-4xl lg:text-5xl font-bold bg-gradient-to-r from-[#6800ad] to-[#c02af5] bg-clip-text text-transparent mb-8">The World's First Spiritual Insurance Platform</h1>
-              <p className="text-lg text-gray-300">
-                Your soul deserves protection too, not just your mind and body.
-              </p>
+            <AnimatedHero 
+              title="Your Custom Title Here" 
+              subtitle="Your custom subtitle text here"
+            />
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
