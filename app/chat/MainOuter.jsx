@@ -33,7 +33,7 @@ export default function MainOuter() {
                 <SidebarBody className="justify-between gap-10">
                     <div className="flex flex-col flex-1 overflow-y-auto overflow-x-hidden">
                         {/* <Logo /> */}
-                        <Link href='/' className="newChat bg-black px-5 py-3 rounded-lg text-xl hover:bg-gray-800 cursor-pointer"><span>New Chat</span></Link>
+                        <Link href='#' className="newChat bg-black px-5 py-3 rounded-lg text-xl hover:bg-gray-800 cursor-pointer"><span>New Chat</span></Link>
                         <div className="mt-8 flex flex-col gap-2 ">
                             {links.map((link, idx) => (
                                 <SidebarLink key={idx} label={link.label} href={link.href} />

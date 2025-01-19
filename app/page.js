@@ -1,6 +1,6 @@
 "use client"
 
-import MainOuter from "./mainOuter/MainOuter";
+import MainOuter from "./chat/MainOuter";
 
 export default function Home() {
   return (
