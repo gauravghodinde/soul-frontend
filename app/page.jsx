@@ -371,72 +371,72 @@ export const projects = [
     title: "Aries",
     description:
       "The first sign of the zodiac, Aries represents courage, determination, and enthusiasm. Natural-born leaders who are dynamic, confident, and energetic.",
-    link: "/zodiac/aries",
+    link: "/aries.svg",
   },
   {
     title: "Taurus",
     description:
       "Known for reliability, practicality, and devotion, Taurus is an earth sign characterized by stability, patience, and a strong connection to the material world.",
-    link: "/zodiac/taurus",
+    link: "/taurus.svg",
   },
   {
     title: "Gemini",
     description:
       "Expressive and quick-witted, Gemini represents duality, adaptability, and communication. They are intellectually curious and masters of communication.",
-    link: "/zodiac/gemini",
+    link: "/gemini.svg",
   },
   {
     title: "Cancer",
     description:
       "Deeply intuitive and sentimental, Cancer is characterized by emotional intelligence, nurturing nature, and strong attachment to home and family.",
-    link: "/zodiac/cancer",
+    link: "/cancer.svg",
   },
   {
     title: "Leo",
     description:
       "Creative and dramatic, Leo brings warmth and charisma to the zodiac. Natural performers who are generous, loyal, and possess strong leadership qualities.",
-    link: "/zodiac/leo",
+    link: "/leo.svg",
   },
   {
     title: "Virgo",
     description:
       "Detail-oriented and analytical, Virgo represents precision, service, and practicality. They are methodical problem-solvers with a deep sense of humanity.",
-    link: "/zodiac/virgo",
+    link: "/virgo.svg",
   },
   {
     title: "Libra",
     description:
       "Represented by the scales, Libra embodies balance, harmony, and justice. They are diplomatic, fair-minded, and have a strong sense of aesthetics.",
-    link: "/zodiac/libra",
+    link: "/libra.svg",
   },
   {
     title: "Scorpio",
     description:
       "Passionate and powerful, Scorpio represents intensity, transformation, and mystery. They are determined truth-seekers with incredible emotional depth.",
-    link: "/zodiac/scorpio",
+    link: "/scorpio.svg",
   },
   {
     title: "Sagittarius",
     description:
       "Optimistic and freedom-loving, Sagittarius represents philosophy, adventure, and expansion. They are natural explorers with a love for knowledge.",
-    link: "/zodiac/sagittarius",
+    link: "/sagittarius.svg",
   },
   {
     title: "Capricorn",
     description:
       "Ambitious and disciplined, Capricorn represents responsibility, tradition, and achievement. They are master planners with an unwavering focus on goals.",
-    link: "/zodiac/capricorn",
+    link: "/capricorn.svg",
   },
   {
     title: "Aquarius",
     description:
       "Progressive and original, Aquarius represents innovation, community, and idealism. They are humanitarian thinkers who champion intellectual independence.",
-    link: "/zodiac/aquarius",
+    link: "/aquarius.svg",
   },
   {
     title: "Pisces",
     description:
       "Intuitive and artistic, Pisces represents compassion, creativity, and spirituality. They are empathetic dreamers with a deep connection to the collective unconscious.",
-    link: "/zodiac/pisces",
+    link: "/pisces.svg",
   },
 ];
