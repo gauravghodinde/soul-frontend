@@ -129,9 +129,7 @@ export default function Planets() {
         const planetaryMovementsSection = sections.find((section) => section.includes("Planetary Movements:"));
         if (planetaryMovementsSection) {
             const planetaryMovements = planetaryMovementsSection.replace("Planetary Movements:", "").split('\n').slice(1,-1).map((line) => {
-                console.log(line)
                 const parts = line.split('has moved');
-                console.log(parts)
 
                 return {
                     planet: parts[0]?.trim(),
@@ -191,7 +189,6 @@ export default function Planets() {
     
         setLoading(true);
         setResponseData(""); // Reset any previous response data
-        console.log("loading");
     
         try {
             // Map formData to the API-required format

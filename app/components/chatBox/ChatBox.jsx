@@ -153,7 +153,6 @@ export function ChatBox({
     const storedData = JSON.parse(localStorage.getItem("horoscopeData"))?.formData;
     try {
       const value = inputRef.current?.value || "";
-      console.log(value)
       if (value && inputRef.current) {
         const response = await axios.post(chatapi, {
           query: value,
@@ -164,7 +163,6 @@ export function ChatBox({
             cp: storedData.cp,
           } : { note: "user unavaiable" },
         });
-        console.log(response)
         setResponseMessage(response.data.response || "Response received");
       }
     } catch (error) {
