@@ -3,8 +3,10 @@ import Link from "next/link";
 
 export const Sidebar = ({ children }) => {
   return (
+
     <div className="w-[18%] z-30 h-full bg-gradient-to-b from-purple-600 to-indigo-700 text-white">
       {children}
+
     </div>
   );
 };
