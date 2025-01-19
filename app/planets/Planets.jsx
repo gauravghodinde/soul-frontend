@@ -11,7 +11,7 @@ export default function Planets() {
     const links = [
         { label: "Horoscope", href: "/horoscope" },
         { label: "Planets", href: "#" },
-        { label: "Gemstones", href: "#" },
+        { label: "Kundli", href: "/kundli" },
         { label: "Advices", href: "/advices" },
     ];
 
@@ -94,7 +94,7 @@ export default function Planets() {
                 
                 const parts = line.split(':');
                 return {
-                    planet: parts[0].trim(),
+                    planet: parts[0]?.trim(),
                     birthNakshatra: parts[1].split(',')[0].trim(),
                     transitNakshatra: parts[1].split(',')[1].trim(),
                 };
@@ -134,8 +134,8 @@ export default function Planets() {
                 console.log(parts)
 
                 return {
-                    planet: parts[0].trim(),
-                    movement: parts[1].trim(),
+                    planet: parts[0]?.trim(),
+                    movement: parts[1]?.trim(),
                 };
             });
             formattedData.planetaryMovements = planetaryMovements;

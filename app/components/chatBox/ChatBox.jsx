@@ -155,17 +155,6 @@ export function ChatBox({
       const value = inputRef.current?.value || "";
       console.log(value)
       if (value && inputRef.current) {
-        console.log(storedData)
-        console.log(value)
-        console.log({
-          query: value,
-          user_data: storedData ? {
-            dob: storedData.dob,
-            tob: storedData.tob,
-            pob: storedData.pob,
-            cp: storedData.cp,
-          } : { note: "user unavaiable" },
-        })
         const response = await axios.post(chatapi, {
           query: value,
           user_data: storedData ? {

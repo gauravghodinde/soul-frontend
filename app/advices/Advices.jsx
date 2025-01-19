@@ -11,7 +11,7 @@ export default function Advices() {
     const links = [
         { label: "Horoscope", href: "/horoscope" },
         { label: "Planets", href: "/planets" },
-        { label: "Gemstones", href: "#" },
+        { label: "Kundli", href: "/kundli" },
         { label: "Advices", href: "#" },
     ];
 
@@ -94,7 +94,7 @@ export default function Advices() {
 
                 const parts = line.split(':');
                 return {
-                    planet: parts[0].trim(),
+                    planet: parts[0]?.trim(),
                     birthNakshatra: parts[1].split(',')[0].trim(),
                     transitNakshatra: parts[1].split(',')[1].trim(),
                 };
@@ -134,8 +134,8 @@ export default function Advices() {
                 console.log(parts)
 
                 return {
-                    planet: parts[0].trim(),
-                    movement: parts[1].trim(),
+                    planet: parts[0]?.trim(),
+                    movement: parts[1]?.trim(),
                 };
             });
             formattedData.planetaryMovements = planetaryMovements;
@@ -267,7 +267,7 @@ export default function Advices() {
                     {(showForm || !responseData) ? (
                         <>
                             <h1 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-[#6800ad] to-[#c02af5] bg-clip-text text-transparent mb-[10vh] text-center w-full px-4">
-                                Enter your details to get your horoscope
+                                Enter your details
                             </h1>
                             <form onSubmit={handleSubmit} className="w-full max-w-md p-6 rounded-lg shadow-md">
                                 <div className="mb-4">
