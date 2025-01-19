@@ -1,0 +1,1 @@
+export const api = 'http://13.203.67.150';

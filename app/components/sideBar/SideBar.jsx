@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const Sidebar = ({ children }) => {
   return (
-    <div className="w-[20%] h-full bg-gradient-to-b from-purple-600 to-indigo-700 text-white">
+    <div className="w-[18%] z-30 h-full bg-gradient-to-b from-purple-600 to-indigo-700 text-white">
       {children}
     </div>
   );
@@ -22,11 +22,10 @@ export const SidebarLink = ({ label, href, icon, className, ...props }) => {
   return (
     <Link
       href={href}
-      className={`flex items-center justify-start gap-2 py-2 px-3 rounded-md hover:bg-white/10 transition-colors ${className}`}
+      className={`flex items-center justify-start gap-2 py-3 px-3 rounded-lg cursor-pointer hover:bg-black/10 transition-colors ${className}`}
       {...props}
     >
-      {icon}
-      <span className="text-lg font-medium">{label}</span>
+      <span className="text-xl font-medium">{label}</span>
     </Link>
   );
 };

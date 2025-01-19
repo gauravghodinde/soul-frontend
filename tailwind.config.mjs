@@ -10,6 +10,8 @@ export default {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        'scrollbar-thumb': '#888',
+        'scrollbar-track': '#f1f1f1',
       },
     },
   },
