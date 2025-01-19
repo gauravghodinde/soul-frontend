@@ -27,12 +27,15 @@ export default function Navbar() {
             <Link href="#spiritual-content" className="text-gray-300 hover:text-purple-400 transition-colors">
               Spiritual Content
             </Link>
+            <Link href="/chat" className="text-gray-300 hover:text-purple-400 transition-colors">
             <Button
               variant="outline"
               className="border-purple-600 text-purple-400 hover:bg-purple-600 hover:text-white"
             >
               Get Started
             </Button>
+            </Link>
+           
           </div>
         </div>
       </div>
