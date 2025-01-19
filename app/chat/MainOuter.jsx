@@ -43,7 +43,7 @@ export default function MainOuter() {
                 </SidebarBody>
             </Sidebar>
             <div className="flex-1">
-                <div className="min-h-screen flex flex-col justify-center items-center px-4 relative">
+                <div className="min-h-screen flex flex-col justify-center items-center px-4 gap-20 relative">
                 <h1 className="text-5xl lg:text-6xl font-bold bg-gradient-to-r from-[#6800ad] to-[#c02af5] bg-clip-text text-transparent mb-[10vh] transform -translate-x-1/2l text-center w-full px-4">
                         Ask SoulBuddy Anything
                     </h1>

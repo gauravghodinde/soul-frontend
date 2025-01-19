@@ -3,6 +3,8 @@
 import { AnimatePresence, motion } from "framer-motion";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { chatapi } from "@/app/values";
+import axios from "axios";
 
 
 export function ChatBox({
@@ -17,6 +19,7 @@ export function ChatBox({
   const inputRef = useRef(null);
   const [value, setValue] = useState("");
   const [animating, setAnimating] = useState(false);
+  const [responseMessage, setResponseMessage] = useState("");
 
   const startAnimation = () => {
     intervalRef.current = setInterval(() => {
@@ -145,13 +148,43 @@ export function ChatBox({
     };
     animateFrame(start);
   };
+  const apiCall = async (e) => {
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && !animating) {
-      vanishAndSubmit();
+    const storedData = JSON.parse(localStorage.getItem("horoscopeData"))?.formData;
+    try {
+      const value = inputRef.current?.value || "";
+      console.log(value)
+      if (value && inputRef.current) {
+        console.log(storedData)
+        console.log(value)
+        console.log({
+          query: value,
+          user_data: storedData ? {
+            dob: storedData.dob,
+            tob: storedData.tob,
+            pob: storedData.pob,
+            cp: storedData.cp,
+          } : { note: "user unavaiable" },
+        })
+        const response = await axios.post(chatapi, {
+          query: value,
+          user_data: storedData ? {
+            dob: storedData.dob,
+            tob: storedData.tob,
+            pob: storedData.pob,
+            cp: storedData.cp,
+          } : { note: "user unavaiable" },
+        });
+        console.log(response)
+        setResponseMessage(response.data.response || "Response received");
+      }
+    } catch (error) {
+      console.error("API call failed:", error.message);
+      console.error("Full error details:", error.response || error);
+      setResponseMessage("An error occurred while fetching the response.");
     }
-  };
 
+  };
   const vanishAndSubmit = () => {
     setAnimating(true);
     draw();
@@ -168,108 +201,112 @@ export function ChatBox({
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    apiCall();
     vanishAndSubmit();
     onSubmit && onSubmit(e);
   };
 
   return (
-    <form
-      className={cn(
-        "w-full relative max-w-xl mx-auto bg-white dark:bg-zinc-800 h-12 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200",
-        value && "bg-gray-50"
-      )}
-      onSubmit={handleSubmit}
-    >
-      <canvas
+    <>
+      {responseMessage && <div className=" transform -translate-y-10 h-fit w-[80%] text-lg text-white ">{responseMessage}</div>}
+      <form
         className={cn(
-          "absolute pointer-events-none  text-base transform scale-50 top-[20%] left-2 sm:left-8 origin-top-left filter invert dark:invert-0 pr-20",
-          !animating ? "opacity-0" : "opacity-100"
+          "w-full relative max-w-xl mx-auto bg-white dark:bg-zinc-800 h-12 rounded-full overflow-hidden shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),_0px_1px_0px_0px_rgba(25,28,33,0.02),_0px_0px_0px_1px_rgba(25,28,33,0.08)] transition duration-200",
+          value && "bg-gray-50"
         )}
-        ref={canvasRef}
-      />
-      <input
-        onChange={(e) => {
-          if (!animating) {
-            setValue(e.target.value);
-            onChange && onChange(e);
-          }
-        }}
-        onKeyDown={handleKeyDown}
-        ref={inputRef}
-        value={value}
-        type="text"
-        className={cn(
-          "w-full relative text-xl sm:text-base z-50 border-none dark:text-white bg-transparent text-black h-full rounded-full focus:outline-none focus:ring-0 pl-4 sm:pl-10 pr-20",
-          animating && "text-transparent dark:text-transparent"
-        )}
-      />
-
-      <button
-        disabled={!value}
-        type="submit"
-        className="absolute right-2 top-1/2 z-50 -translate-y-1/2 h-8 w-8 rounded-full disabled:bg-gray-100 bg-black dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
+        onSubmit={handleSubmit}
       >
-        <motion.svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-          className="text-gray-300 h-4 w-4"
-        >
-          <path stroke="none" d="M0 0h24v24H0z" fill="none" />
-          <motion.path
-            d="M5 12l14 0"
-            initial={{
-              strokeDasharray: "50%",
-              strokeDashoffset: "50%",
-            }}
-            animate={{
-              strokeDashoffset: value ? 0 : "50%",
-            }}
-            transition={{
-              duration: 0.3,
-              ease: "linear",
-            }}
-          />
-          <path d="M13 18l6 -6" />
-          <path d="M13 6l6 6" />
-        </motion.svg>
-      </button>
+        <canvas
+          className={cn(
+            "absolute pointer-events-none  text-base transform scale-50 top-[20%] left-2 sm:left-8 origin-top-left filter invert dark:invert-0 pr-20",
+            !animating ? "opacity-0" : "opacity-100"
+          )}
+          ref={canvasRef}
+        />
+        <input
+          onChange={(e) => {
+            if (!animating) {
+              setValue(e.target.value);
+              onChange && onChange(e);
+            }
+          }}
+          ref={inputRef}
+          value={value}
+          type="text"
+          className={cn(
+            "w-full relative text-xl sm:text-base z-50 border-none dark:text-white bg-transparent text-black h-full rounded-full focus:outline-none focus:ring-0 pl-4 sm:pl-10 pr-20",
+            animating && "text-transparent dark:text-transparent"
+          )}
+        />
 
-      <div className="absolute inset-0 flex items-center rounded-full pointer-events-none">
-        <AnimatePresence mode="wait">
-          {!value && (
-            <motion.p
+        <button
+          disabled={!value}
+          type="submit"
+          className="absolute right-2 top-1/2 z-50 -translate-y-1/2 h-8 w-8 rounded-full disabled:bg-gray-100 bg-black dark:bg-zinc-900 dark:disabled:bg-zinc-800 transition duration-200 flex items-center justify-center"
+        >
+          <motion.svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            className="text-gray-300 h-4 w-4"
+          >
+            <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+            <motion.path
+              d="M5 12l14 0"
               initial={{
-                y: 5,
-                opacity: 0,
+                strokeDasharray: "50%",
+                strokeDashoffset: "50%",
               }}
-              key={`current-placeholder-${currentPlaceholder}`}
               animate={{
-                y: 0,
-                opacity: 1,
-              }}
-              exit={{
-                y: -15,
-                opacity: 0,
+                strokeDashoffset: value ? 0 : "50%",
               }}
               transition={{
                 duration: 0.3,
                 ease: "linear",
               }}
-              className="dark:text-zinc-500 text-sm sm:text-base font-normal text-neutral-500 pl-4 sm:pl-12 text-left w-[calc(100%-2rem)] truncate"
-            >
-              {placeholders[currentPlaceholder]}
-            </motion.p>
-          )}
-        </AnimatePresence>
-      </div>
-    </form>
+            />
+            <path d="M13 18l6 -6" />
+            <path d="M13 6l6 6" />
+          </motion.svg>
+        </button>
+
+        <div className="absolute inset-0 flex items-center rounded-full pointer-events-none">
+          <AnimatePresence mode="wait">
+            {!value && (
+              <motion.p
+                initial={{
+                  y: 5,
+                  opacity: 0,
+                }}
+                key={`current-placeholder-${currentPlaceholder}`}
+                animate={{
+                  y: 0,
+                  opacity: 1,
+                }}
+                exit={{
+                  y: -15,
+                  opacity: 0,
+                }}
+                transition={{
+                  duration: 0.3,
+                  ease: "linear",
+                }}
+                className="dark:text-zinc-500 text-sm sm:text-base font-normal text-neutral-500 pl-4 sm:pl-12 text-left w-[calc(100%-2rem)] truncate"
+              >
+                {placeholders[currentPlaceholder]}
+              </motion.p>
+            )}
+          </AnimatePresence>
+        </div>
+      </form>
+    </>
+
   );
 }
 
