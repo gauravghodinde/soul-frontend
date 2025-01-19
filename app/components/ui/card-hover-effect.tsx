@@ -1,4 +1,5 @@
 import { cn } from "@/app/lib/utils";
+import { SvgIcon } from "@mui/material";
 import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 import { useState } from "react";
@@ -38,6 +39,13 @@ export const HoverEffect = ({
             )}
           </AnimatePresence>
           <Card className={cn("group-hover:shadow-xl")}>
+            <div className="relative z-50">
+              <img
+                src={item.link}
+                alt={item.title}
+                className="rounded-2xl h-24 w-full object-fit "/>
+                
+              </div>
             <CardTitle className={cn("")}>{item.title}</CardTitle>
             <CardDescription className={cn("")}>{item.description}</CardDescription>
           </Card>
